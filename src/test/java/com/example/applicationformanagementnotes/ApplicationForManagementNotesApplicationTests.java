@@ -1,10 +1,10 @@
-package com.example.applicationformanagmentnotes;
+package com.example.applicationformanagementnotes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationForManagmentNotesApplicationTests {
+class ApplicationForManagementNotesApplicationTests {
 
     @Test
     void contextLoads() {

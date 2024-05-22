@@ -1,7 +1,7 @@
-package com.example.applicationformanagmentnotes.controller;
+package com.example.applicationformanagementnotes.controller;
 
 
-import com.example.applicationformanagmentnotes.entity.Note;
+import com.example.applicationformanagementnotes.entity.Note;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

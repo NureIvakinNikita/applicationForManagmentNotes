@@ -1,7 +1,7 @@
-package com.example.applicationformanagmentnotes.service.impl;
+package com.example.applicationformanagementnotes.service.impl;
 
-import com.example.applicationformanagmentnotes.repository.NoteRepository;
-import com.example.applicationformanagmentnotes.service.NoteService;
+import com.example.applicationformanagementnotes.repository.NoteRepository;
+import com.example.applicationformanagementnotes.service.NoteService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,9 @@
-package com.example.applicationformanagmentnotes.entity;
+package com.example.applicationformanagementnotes.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "note", schema = "project")
@@ -19,4 +21,6 @@ public class Note {
     private String title;
 
     private String description;
+
+    private LocalDate creationDate;
 }
