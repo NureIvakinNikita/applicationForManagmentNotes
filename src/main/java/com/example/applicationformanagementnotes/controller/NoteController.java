@@ -3,6 +3,7 @@ package com.example.applicationformanagementnotes.controller;
 
 import com.example.applicationformanagementnotes.entity.Note;
 import com.example.applicationformanagementnotes.service.NoteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,13 +31,13 @@ public class NoteController {
     }
 
     @PostMapping("/notes")
-    public ResponseEntity<Boolean> createNote(@RequestBody Note note){
+    public ResponseEntity<Boolean> createNote(@RequestBody @Valid Note note){
         boolean result = noteService.createNote(note);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PutMapping("/notes/{id}")
-    public ResponseEntity<Boolean> updateNote(@PathVariable Integer id, @RequestBody Note noteDTO){
+    public ResponseEntity<Boolean> updateNote(@PathVariable Integer id, @Valid @RequestBody Note noteDTO){
         boolean result = noteService.updateNote(id,noteDTO);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
