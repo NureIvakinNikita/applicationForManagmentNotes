@@ -10,4 +10,8 @@ public interface NoteService {
     List<Note> getAllNotes();
 
     Note getNoteById(Integer id);
+
+    boolean createNote(Note note);
+
+    boolean updateNote(Integer id);
 }

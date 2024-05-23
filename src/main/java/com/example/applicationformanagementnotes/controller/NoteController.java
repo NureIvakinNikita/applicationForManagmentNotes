@@ -31,11 +31,13 @@ public class NoteController {
 
     @PostMapping("/notes")
     public ResponseEntity<Boolean> createNote(@RequestBody Note note){
-        return new ResponseEntity<>(true, HttpStatus.OK);
+        boolean result = noteService.createNote(note);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PutMapping("/notes/{id}")
     public ResponseEntity<Boolean> updateNote(@PathVariable Integer id){
+        boolean result = noteService.updateNote(id);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
