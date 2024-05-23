@@ -36,13 +36,14 @@ public class NoteController {
     }
 
     @PutMapping("/notes/{id}")
-    public ResponseEntity<Boolean> updateNote(@PathVariable Integer id){
-        boolean result = noteService.updateNote(id);
-        return new ResponseEntity<>(true, HttpStatus.OK);
+    public ResponseEntity<Boolean> updateNote(@PathVariable Integer id, @RequestBody Note noteDTO){
+        boolean result = noteService.updateNote(id,noteDTO);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @DeleteMapping("/notes/{id}")
     public ResponseEntity<Boolean> deleteNote(@PathVariable Integer id){
-        return new ResponseEntity<>(true, HttpStatus.OK);
+        boolean result = noteService.deleteNote(id);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

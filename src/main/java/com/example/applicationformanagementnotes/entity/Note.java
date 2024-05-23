@@ -23,4 +23,6 @@ public class Note {
     private String description;
 
     private LocalDate creationDate;
+
+    private LocalDate changeDate;
 }

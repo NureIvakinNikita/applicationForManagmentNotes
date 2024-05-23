@@ -32,7 +32,7 @@ public class NoteServiceImpl implements NoteService {
         if (tempNote.isPresent()){
             return tempNote.get();
         } else {
-            log.info("There aren't any notes with id: " + id);
+            log.error("There aren't any notes with id: " + id);
             return null;
         }
     }
@@ -47,15 +47,45 @@ public class NoteServiceImpl implements NoteService {
         try {
             save(note);
         } catch (Exception e) {
-            log.info("Error in saving note.");
+            log.error("Error in saving note.");
             return false;
         }
         return true;
     }
 
     @Override
-    public boolean updateNote(Integer id) {
-        return false;
+    public boolean updateNote(Integer id, Note noteDTO) {
+        Note note = getNoteById(id);
+        if (note == null) {
+            log.error("Error there aren't any notes with id " + id);
+        }
+        note.setTitle(noteDTO.getTitle());
+        note.setDescription(note.getDescription());
+        note.setChangeDate(LocalDate.now());
+
+        try {
+            save(note);
+        } catch (Exception e) {
+            log.error("Error updating note with id " + id, e);
+            //exception
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean deleteNote(Integer id) {
+        Note note = getNoteById(id);
+
+        try {
+            noteRepository.delete(note);
+        } catch (Exception e) {
+            log.error("Error deleting note with id " + id, e);
+            return false;
+        }
+
+        return true;
     }
 
     @Transactional

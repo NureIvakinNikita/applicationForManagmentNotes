@@ -3,4 +3,5 @@ CREATE TABLE project.note (
                                            title VARCHAR(255) NOT NULL ,
                                            description VARCHAR(255),
                                            creation_date DATE NOT NULL
+                                           change_date DATE NOT
 );
