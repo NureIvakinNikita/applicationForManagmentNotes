@@ -54,7 +54,7 @@ export class NotesListComponent implements OnInit {
   }
 
   updateNote(noteId: number): void {
-    this.router.navigate(['/notes/update', {noteId: noteId}]);
+    this.router.navigate(['/notes/update', noteId]);
   }
 
 }

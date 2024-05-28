@@ -9,7 +9,11 @@ import { NoteResolver } from './note-resolver';
 const routes: Routes = [
   {path: 'header', component: HeaderComponent},
   {path: 'notes/create', component: NotesComponent, resolve: {note: NoteResolver}},
-  {path: 'notes/update', component: NotesComponent, resolve: {note: NoteResolver}},
+  {
+    path: 'notes/update/:noteId',
+    component: NotesComponent,
+    resolve: { note: NoteResolver }
+  },
   {path: 'notes', component: NotesListComponent},
   {path: '', component: HomeComponent},
 ];

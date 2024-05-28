@@ -11,7 +11,7 @@
         </div>
         <div class="buttons">
           <button type="button" class="cancel-button">Cancel</button>
-          <button type="submit" class="create-button">Create</button>
+          <button type="submit" class="create-button">{{ note.noteId == 0 ? 'Create' : 'Edit' }}</button>
         </div>
       </div>
     </form>
