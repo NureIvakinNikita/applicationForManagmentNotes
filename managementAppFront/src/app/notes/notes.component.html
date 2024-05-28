@@ -1,14 +1,19 @@
 <div class="notes-create-container">
-    <div class="note">
-      <div class="input-group">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" placeholder="Enter title...">
+    <form #noteForm="ngForm" (ngSubmit) = "createNote(noteForm)">
+      <div class="note">
+        <div class="input-group">
+          <label for="title">Title:</label>
+          <input type="text" id="title" placeholder="Enter title..." name="title" [(ngModel)]="note.title">
+        </div>
+        <div class="input-group">
+          <label for="description">Description:</label>
+          <textarea id="description" placeholder="Enter description..." name="description" [(ngModel)]="note.description"></textarea>
+        </div>
+        <div class="buttons">
+          <button type="button" class="cancel-button">Cancel</button>
+          <button type="submit" class="create-button">Create</button>
+        </div>
       </div>
-      <div class="input-group">
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" placeholder="Enter description..."></textarea>
-      </div>
-      <button class="create-button">Create</button>
-    </div>
+    </form>
   </div>
   

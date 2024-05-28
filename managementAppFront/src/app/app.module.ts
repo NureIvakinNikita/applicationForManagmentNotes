@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { NotesComponent } from './notes/notes.component';
+import { FormsModule } from '@angular/forms'; // Import FormsModule here
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,11 @@ import { NotesComponent } from './notes/notes.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [
-    provideAnimationsAsync()
+    
   ],
   bootstrap: [AppComponent]
 })
