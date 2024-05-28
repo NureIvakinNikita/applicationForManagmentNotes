@@ -1,0 +1,30 @@
+<div class="notes-container-wrapper">
+    <div class="notes-container">
+      <div class="note" *ngFor="let note of notes">
+        <input type="hidden" [value]="note.noteId" readonly>
+        <div class="input-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" [value]="note.title" readonly>
+        </div>
+        <div class="input-group">
+          <label for="description">Description</label>
+          <textarea id="description" readonly>{{ note.description }}</textarea>
+        </div>
+        <div class="dates">
+          <div class="date">
+            <label>Creation date</label>
+            <div>{{ note.creationDate }}</div>
+          </div>
+          <div class="date">
+            <label>Last change</label>
+            <div>{{ note.changeDate ? note.changeDate : 'not modified' }}</div>
+          </div>
+        </div>
+        <div class="buttons">
+          <button class="edit-button">Edit</button>
+          <button class="delete-button" (click)="deleteNote(note.noteId)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

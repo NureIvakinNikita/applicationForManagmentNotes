@@ -3,6 +3,7 @@ import { Note } from '../note.modul';
 import { NgForm } from '@angular/forms';
 import { NotesService } from '../notes.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notes',
@@ -14,10 +15,14 @@ export class NotesComponent implements OnInit {
   note: Note = {
     noteId: 1,
     title: '',
-    description: ''
+    description: '',
+    creationDate: '',
+    changeDate: ''
   }
 
-  constructor(private noteService: NotesService) {
+  constructor(private noteService: NotesService,
+    private router: Router,
+  ) {
 
   }
 
@@ -27,6 +32,7 @@ export class NotesComponent implements OnInit {
         next: (res: boolean) => {
           console.log(res);
           noteForm.reset();
+          this.router.navigate(['/notes']);
         },
         error: (err: HttpErrorResponse) => {
           console.log(err);
@@ -34,6 +40,7 @@ export class NotesComponent implements OnInit {
       }
     );
   }
+
 
   ngOnInit(): void {
   }

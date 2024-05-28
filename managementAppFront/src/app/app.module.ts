@@ -7,13 +7,15 @@ import { HomeComponent } from './home/home.component';
 import { NotesComponent } from './notes/notes.component';
 import { FormsModule } from '@angular/forms'; // Import FormsModule here
 import { HttpClientModule } from '@angular/common/http';
+import { NotesListComponent } from './notes-list/notes-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    NotesComponent
+    NotesComponent,
+    NotesListComponent
   ],
   imports: [
     BrowserModule,

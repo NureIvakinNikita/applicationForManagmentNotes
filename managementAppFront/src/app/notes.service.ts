@@ -15,4 +15,12 @@ export class NotesService {
   public createNote(note: Note): Observable<boolean> {
     return this.http.post<boolean>(`${this.api}/api/notes`, note);
   }
+
+  public getNotes(): Observable<Note[]> {
+    return this.http.get<Note[]>(`${this.api}/api/notes`)
+  }
+
+  public deleteNote(noteId: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.api}/api/notes/${noteId}`)
+  }
 }
