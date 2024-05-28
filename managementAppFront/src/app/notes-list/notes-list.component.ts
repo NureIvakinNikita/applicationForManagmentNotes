@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotesService } from '../notes.service';
 import { Note } from '../note.modul';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notes-list',
@@ -10,9 +11,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class NotesListComponent implements OnInit {
 
+  noteId: number = 0;
+
   notes: Note[] = [];  
 
-  constructor(private notesService: NotesService) {}
+  constructor(private notesService: NotesService,
+    private router: Router) { 
+      this.getNotes();
+  }
 
   ngOnInit(): void {
     this.getNotes();
@@ -48,7 +54,7 @@ export class NotesListComponent implements OnInit {
   }
 
   updateNote(noteId: number): void {
-    
+    this.router.navigate(['/notes/update', {noteId: noteId}]);
   }
 
 }

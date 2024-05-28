@@ -23,4 +23,12 @@ export class NotesService {
   public deleteNote(noteId: number): Observable<boolean> {
     return this.http.delete<boolean>(`${this.api}/api/notes/${noteId}`)
   }
+
+  public getNoteById(noteId: number): Observable<Note> {
+    return this.http.get<Note>(`${this.api}/api/notes/${noteId}`);
+  }
+
+  public updateNote(noteId: number, note: Note): Observable<boolean> {
+    return this.http.put<boolean>(`${this.api}/api/notes/${noteId}`, note)
+  }
 }

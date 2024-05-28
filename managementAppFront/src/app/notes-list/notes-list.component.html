@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="buttons">
-          <button class="edit-button">Edit</button>
+          <button class="edit-button" (click)="updateNote(note.noteId)">Edit</button>
           <button class="delete-button" (click)="deleteNote(note.noteId)">Delete</button>
         </div>
       </div>
