@@ -1,4 +1,7 @@
 <div class="notes-create-container">
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
   <form [formGroup]="noteForm" (ngSubmit)="createNote()" novalidate>
     <div class="note">
       <div class="input-group">

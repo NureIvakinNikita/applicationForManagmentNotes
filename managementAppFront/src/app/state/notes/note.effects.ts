@@ -17,7 +17,7 @@ export class NotesEffects {
       ofType(NotesActions.getNotes),
       mergeMap(() => this.notesService.getNotes().pipe(
         map(notes => NotesActions.getNotesSuccess({ notes })),
-        catchError(error => of(NotesActions.getNotesFail({ error })))
+        catchError(error => of(NotesActions.getNotesFail({  error: error.error.message  })))
       ))
     )
   );
@@ -27,7 +27,7 @@ export class NotesEffects {
       ofType(NotesActions.createNote),
       mergeMap(action => this.notesService.createNote(action.note).pipe(
         map(() => NotesActions.createNoteSuccess({ note: action.note })),
-        catchError(error => of(NotesActions.createNoteFail({ error })))
+        catchError(error => of(NotesActions.createNoteFail({  error: error.error.message  })))
       ))
     )
   );
@@ -37,7 +37,7 @@ export class NotesEffects {
       ofType(NotesActions.updateNote),
       mergeMap(action => this.notesService.updateNote(action.note.noteId, action.note).pipe(
         map(() => NotesActions.updateNoteSuccess({ note: action.note })),
-        catchError(error => of(NotesActions.updateNoteFail({ error })))
+        catchError(error => of(NotesActions.updateNoteFail({  error: error.error.message  })))
       ))
     )
   );
@@ -47,7 +47,7 @@ export class NotesEffects {
       ofType(NotesActions.deleteNote),
       mergeMap(action => this.notesService.deleteNote(action.noteId).pipe(
         map(() => NotesActions.deleteNoteSuccess({ noteId: action.noteId })),
-        catchError(error => of(NotesActions.deleteNoteFail({ error })))
+        catchError(error => of(NotesActions.deleteNoteFail({  error: error.error.message  })))
       ))
     )
   );

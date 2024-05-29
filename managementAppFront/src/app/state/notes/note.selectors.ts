@@ -12,3 +12,7 @@ export const selectNoteById = (noteId: number) => createSelector(
     selectAllNotes,
     (notes) => notes.find(note => note.noteId === noteId)
 );
+
+export const getNoteError = createSelector(selectNotesState, (state)=> {
+    return state.error;
+});

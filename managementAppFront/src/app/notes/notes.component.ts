@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { createNote, getNotes, updateNote } from '../state/notes/note.actions';
 import { NotesState } from '../state/notes/note.reducer';
-import { selectNoteById } from '../state/notes/note.selectors';
+import { getNoteError, selectNoteById } from '../state/notes/note.selectors';
 
 @Component({
   selector: 'app-notes',
@@ -20,6 +20,7 @@ export class NotesComponent implements OnInit {
   isCreateNote: boolean = true;
   note$!: Observable<Note | undefined>;
   noteForm!: FormGroup;
+  error: any;
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +36,11 @@ export class NotesComponent implements OnInit {
       description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
       creationDate: [''],
       changeDate: ['']
+    });
+
+    this.store.select(getNoteError).subscribe(item => {
+      this.error = item;
+      console.log(this.error);
     });
 
     this.activatedRoute.params.subscribe(params => {
@@ -74,8 +80,9 @@ export class NotesComponent implements OnInit {
       this.store.dispatch(updateNote({ note: newNote }));
     }
     
-    
-    this.router.navigate(['/notes']);
+    if (this.error !== null) {
+      this.router.navigate(['/notes']);
+    }
   }
 
   get title() {
