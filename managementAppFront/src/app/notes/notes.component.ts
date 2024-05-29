@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { format } from 'date-fns';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { createNote, updateNote } from '../state/notes/note.actions';
+import { createNote, getNotes, updateNote } from '../state/notes/note.actions';
 import { NotesState } from '../state/notes/note.reducer';
 import { selectNoteById } from '../state/notes/note.selectors';
 
@@ -61,7 +61,7 @@ export class NotesComponent implements OnInit {
     if (this.noteForm.invalid) {
       return;
     }
-
+  
     const newNote = {
       ...this.noteForm.value,
       creationDate: this.isCreateNote ? format(new Date(), 'yyyy-MM-dd') : this.noteForm.value.creationDate,
@@ -73,6 +73,8 @@ export class NotesComponent implements OnInit {
     } else {
       this.store.dispatch(updateNote({ note: newNote }));
     }
+    
+    
     this.router.navigate(['/notes']);
   }
 

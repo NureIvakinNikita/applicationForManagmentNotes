@@ -12,8 +12,8 @@ export class NotesService {
 
   api = "http://localhost:8080"
 
-  public createNote(note: Note): Observable<boolean> {
-    return this.http.post<boolean>(`${this.api}/api/notes`, note);
+  public createNote(note: Note): Observable<Note> {
+    return this.http.post<Note>(`${this.api}/api/notes`, note);
   }
 
   public getNotes(): Observable<Note[]> {

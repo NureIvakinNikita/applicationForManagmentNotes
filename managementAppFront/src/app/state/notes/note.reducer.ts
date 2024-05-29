@@ -15,22 +15,22 @@ export const initialState: NotesState = {
 export const notesReducer = createReducer(
     initialState,
     on(NotesActions.getNotesSuccess, (state, { notes }) => ({
-      ...state,
-      notes,
-      error: null
+        ...state,
+        notes,
+        error: null,
     })),
     on(NotesActions.getNotesFail, (state, { error }) => ({
-      ...state,
-      error
+        ...state,
+        error,
     })),
     on(NotesActions.createNoteSuccess, (state, { note }) => ({
-      ...state,
-      notes: [...state.notes, note],
-      error: null
+        ...state,
+        notes: [...state.notes, note],
+        error: null,
     })),
     on(NotesActions.createNoteFail, (state, { error }) => ({
-      ...state,
-      error
+        ...state,
+        error,
     })),
     on(NotesActions.updateNoteSuccess, (state, { note }) => ({
       ...state,

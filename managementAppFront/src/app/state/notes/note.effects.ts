@@ -3,7 +3,7 @@ import { mergeMap, map, catchError, of } from "rxjs";
 import { NotesService } from "../../notes.service";
 import * as NotesActions from './note.actions'
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-0
+
 
 @Injectable()
 export class NotesEffects {
@@ -52,3 +52,4 @@ export class NotesEffects {
     )
   );
 }
+

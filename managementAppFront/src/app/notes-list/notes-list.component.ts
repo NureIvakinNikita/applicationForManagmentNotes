@@ -19,14 +19,15 @@ export class NotesListComponent implements OnInit {
 
   constructor(private store: Store<{ notes: NotesState }>, private router: Router) {
     this.notes$ = store.select(selectAllNotes);
+    console.log(this.notes$.forEach(note => console.log(note)));
   }
 
   ngOnInit(): void {
     this.store.dispatch(getNotes());
+    
   }
 
   deleteNote(noteId: number): void {
-    console.log(noteId);
     this.store.dispatch(deleteNote({ noteId }));
   }
 
