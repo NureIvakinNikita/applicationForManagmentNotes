@@ -1,73 +1,86 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from '../note.modul';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { NotesService } from '../notes.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { format } from 'date-fns';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { createNote, updateNote } from '../state/notes/note.actions';
+import { NotesState } from '../state/notes/note.reducer';
+import { selectNoteById } from '../state/notes/note.selectors';
 
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrl: './notes.component.scss'
+  styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
-[x: string]: any;
-
   isCreateNote: boolean = true;
+  note$!: Observable<Note | undefined>;
+  noteForm!: FormGroup;
 
-  note: Note = { 
-    title: '', 
-    description: '', 
-    creationDate: '', 
-    changeDate: '', 
-    noteId: 0 
-  };
-
-  constructor(private noteService: NotesService,
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<{ notes: NotesState }>,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {
-
-  }
-
-  createNote(noteForm: NgForm): void {
-    if (this.isCreateNote) {
-      this.noteService.createNote(this.note).subscribe(
-        {
-          next: (res: boolean) => {
-            console.log(res);
-            noteForm.reset();
-            this.router.navigate(['/notes']);
-          },
-          error: (err: HttpErrorResponse) => {
-            console.log(err);
-          }
-        }
-      );
-    } else {
-      this.noteService.updateNote(this.note.noteId, this.note).subscribe(
-        {
-          next: (res: boolean) => {
-            this.router.navigate(['/notes']);
-          },
-          error: (err: HttpErrorResponse) => {
-            console.log(err);
-          }
-        }
-      );
-    }
-  }
-
+  ) {}
 
   ngOnInit(): void {
-    this.note = this.activatedRoute.snapshot.data['note'];
-    console.log(this.note);
-    if (this.note && this.note.noteId > 0) {
-      this.isCreateNote = false;
-    } else {
-      
-      this.isCreateNote = true;
-    }
+    this.noteForm = this.fb.group({
+      noteId: [0],
+      title: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
+      description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
+      creationDate: [''],
+      changeDate: ['']
+    });
+
+    this.activatedRoute.params.subscribe(params => {
+      const noteId = +params['noteId'];
+      if (noteId) {
+        this.isCreateNote = false;
+        this.note$ = this.store.select(selectNoteById(noteId));
+        this.note$.subscribe(note => {
+          if (note) {
+            this.noteForm.patchValue(note); // Patch values to the form
+          }
+        });
+      } else {
+        this.isCreateNote = true;
+      }
+    });
   }
 
+  goToNotes(): void {
+    this.router.navigate(['/notes']);
+  }
+
+  createNote(): void {
+    if (this.noteForm.invalid) {
+      return;
+    }
+
+    const newNote = {
+      ...this.noteForm.value,
+      creationDate: this.isCreateNote ? format(new Date(), 'yyyy-MM-dd') : this.noteForm.value.creationDate,
+      changeDate: format(new Date(), 'yyyy-MM-dd')
+    };
+  
+    if (this.isCreateNote) {
+      this.store.dispatch(createNote({ note: newNote }));
+    } else {
+      this.store.dispatch(updateNote({ note: newNote }));
+    }
+    this.router.navigate(['/notes']);
+  }
+
+  get title() {
+    return this.noteForm.get('title');
+  }
+
+  get description() {
+    return this.noteForm.get('description');
+  }
 }

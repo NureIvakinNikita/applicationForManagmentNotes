@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { Note } from "../../note.modul";
 
 export const CREATE_NOTE='[Note Component] Create Note';
 export const CREATE_NOTE_SUCCESS='[Note Component] Create Note Success';
@@ -29,4 +30,3 @@ export const deleteNoteFail = createAction(DELET_NOTE_FAIL, props<{error: any}>(
 export const updateNote = createAction(UPDATE_NOTE, props<{note: Note}>());
 export const updateNoteSuccess = createAction(UPDATE_NOTE_SUCCESS, props<{note: Note}>());
 export const updateNoteFail = createAction(UPDATE_NOTE_FAIL, props<{error: any}>());
-
