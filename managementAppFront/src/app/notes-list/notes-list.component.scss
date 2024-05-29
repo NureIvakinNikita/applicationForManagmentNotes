@@ -1,116 +1,132 @@
 .notes-container-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;  // Займає всю висоту вікна перегляду
-    width: 100vw;  // Займає всю ширину вікна перегляду
-    background-color: #f8bbb0a9;  // Ви можете змінити фон за потреби
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;  // Full viewport height
+  width: 100vw;  // Full viewport width
+  background-color: #f8bbb0a9;  // Background color
+  padding: 20px;  // Adding some padding for spacing
+  box-sizing: border-box;  // Ensure padding and border are included in the element's total width and height
+
+
   .notes-container {
     background-color: #e9f7c8;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;  // Вирівнює нотатки зліва направо
+    justify-content: flex-start;  // Align notes from left to right
     gap: 20px;
     padding: 20px;
-    height: 80%;
-    width: 80%;
+    margin-right: 1%;
+    flex: 1 0 auto;  // Allow the container to grow and shrink as needed
+    width: 100%;  // Full width of the wrapper
     border-radius: 20px;
-  }
-  
-  .note {
-    height: 55%;
-    width: calc(33.333% - 40px);  // 3 нотатки в ряд, враховуючи розрив
-    background-color: #83c5f7;
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-left: 20px;
-    border-radius: 10px;
-    box-sizing: border-box;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;  // Загальний розрив між елементами всередині нотатки
-  
-    .input-group {
+    box-sizing: border-box;  // Ensure padding and border are included in the element's total width and height
+    overflow: auto;  // Add scrollbar if content overflows
+    min-height: 0; 
+    height: fit-content; // Ensure it can shrink to accommodate fewer notes
+
+
+    .note {
+      flex: 1 1 calc(33.333% - 60px);  // Flex basis to allow notes to wrap
+      background-color: #83c5f7;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 10px;
+      box-sizing: border-box;
+      text-align: center;
       display: flex;
+      margin-left: 35px;
       flex-direction: column;
-      align-items: flex-start;
-  
-      label {
-        font-weight: bold;
-        margin-bottom: 3px;
-      }
-  
-      input[type="text"],
-      textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-        font-size: 14px;
-      }
-  
-      textarea {
-        resize: none;
-        height: 100px;
-      }
-    }
-  
-    .dates {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;  // Розрив між .input-group і .dates
-  
-      .date {
+      gap: 20px;  // General gap between elements inside the note
+      min-width: 300px;  // Minimum width to prevent notes from getting too small
+      max-width: calc(33.333% - 60px);  // Maximum width to maintain 3 notes per row
+      height: fit-content;
+
+      .input-group {
         display: flex;
         flex-direction: column;
-        align-items: center;
-  
+        align-items: flex-start;
+
         label {
           font-weight: bold;
-          margin-bottom: 5px;
+          margin-bottom: 3px;
         }
-  
+
+        // Styles for the text inside title and description
         div {
-          padding: 5px 10px;
+          width: 100%;
+          padding: 10px;
           background-color: #fff;
           border: 1px solid #ccc;
           border-radius: 5px;
+          box-sizing: border-box;
+          font-size: 14px;
+          word-wrap: break-word;  // Ensure text wraps within the boundary
+          white-space: normal;  // Ensure text flows left to right and wraps
+          text-align: left;
+        }
+
+        textarea {
+          resize: none;
+          height: 100px;
         }
       }
-    }
-  
-    .buttons {
-      display: flex;
-      justify-content: space-between;
-  
-      button {
-        width: 45%;
-        padding: 10px;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-  
-        &.edit-button {
-          background-color: #8ddf74;
+
+      .dates {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;  // Gap between .input-group and .dates
+
+        .date {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          label {
+            font-weight: bold;
+            margin-bottom: 5px;
+          }
+
+          div {
+            padding: 5px 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
         }
-  
-        &.edit-button:hover {
-          background-color: #45a049;
-        }
-  
-        &.delete-button {
-          background-color: #f44336;
-        }
-  
-        &.delete-button:hover {
-          background-color: #d32f2f;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+          width: 45%;
+          padding: 10px;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &.edit-button {
+            background-color: #8ddf74;
+          }
+
+          &.edit-button:hover {
+            background-color: #45a049;
+          }
+
+          &.delete-button {
+            background-color: #f44336;
+          }
+
+          &.delete-button:hover {
+            background-color: #d32f2f;
+          }
         }
       }
     }
   }
+}

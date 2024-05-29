@@ -80,9 +80,12 @@ export class NotesComponent implements OnInit {
       this.store.dispatch(updateNote({ note: newNote }));
     }
     
-    if (this.error !== null) {
-      this.router.navigate(['/notes']);
+    if (this.error == null) {
+      this.router.navigate(['/notes']).then(() => {
+        this.store.dispatch(getNotes()); 
+      });
     }
+    
   }
 
   get title() {

@@ -4,11 +4,11 @@
       <input type="hidden" [value]="note.noteId" readonly>
       <div class="input-group">
         <label [for]="'title-' + note.noteId">Title</label>
-        <input type="text" [id]="'title-' + note.noteId" [value]="note.title" readonly>
+        <div [id]="'title-' + note.noteId">{{ note.title }}</div>
       </div>
       <div class="input-group">
         <label [for]="'description-' + note.noteId">Description</label>
-        <textarea [id]="'description-' + note.noteId" readonly>{{ note.description }}</textarea>
+        <div [id]="'description-' + note.noteId">{{ note.description }}</div>
       </div>
       <div class="dates">
         <div class="date">
