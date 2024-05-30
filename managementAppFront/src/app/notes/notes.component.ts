@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { createNote, getNotes, updateNote } from '../state/notes/note.actions';
 import { NotesState } from '../state/notes/note.reducer';
 import { getNoteError, selectNoteById } from '../state/notes/note.selectors';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-notes',
@@ -26,8 +27,16 @@ export class NotesComponent implements OnInit {
     private fb: FormBuilder,
     private store: Store<{ notes: NotesState }>,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private translate: TranslateService
+  ) {
+
+    this.store.select(getNoteError).subscribe(item => {
+      this.error = item;
+      console.log(this.error);
+    });
+
+  }
 
   ngOnInit(): void {
     this.noteForm = this.fb.group({
@@ -40,7 +49,7 @@ export class NotesComponent implements OnInit {
 
     this.store.select(getNoteError).subscribe(item => {
       this.error = item;
-      console.log(this.error);
+      console.log(this.error + "selected");
     });
 
     this.activatedRoute.params.subscribe(params => {
@@ -80,7 +89,8 @@ export class NotesComponent implements OnInit {
       this.store.dispatch(updateNote({ note: newNote }));
     }
     
-    if (this.error == null) {
+
+    if (this.error !== null) {
       this.router.navigate(['/notes']).then(() => {
         this.store.dispatch(getNotes()); 
       });
@@ -94,5 +104,13 @@ export class NotesComponent implements OnInit {
 
   get description() {
     return this.noteForm.get('description');
+  }
+
+  getErrorMessage(): string {
+    if (this.isCreateNote) {
+      return this.translate.instant('errorCreating');
+    } else {
+      return this.translate.instant('errorUpdating');
+    }
   }
 }

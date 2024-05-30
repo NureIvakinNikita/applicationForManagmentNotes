@@ -1,0 +1,18 @@
+{
+    "appName": "Менеджер нотаток",
+    "notesList": "Мої нотатки",
+    "createNote": "Створити нотатку",
+    "editButton": "Редагувати",
+    "deleteButton": "Видалити",
+    "cancelButton": "Скасувати",
+    "updateButton": "Оновити",
+    "noteTitle": "Заголовок",
+    "noteDescription": "Опис",
+    "creationDate": "Дата створення",
+    "lastChange": "Остання зміна",
+    "placeholderTitle": "Введіть заголовок...",
+    "placeholderDescription": "Введіть опис...",
+    "errorDescriptionRequired": "Опис обов'язковий.",
+    "errorDescriptionMin": "Опис має бути щонайменше 5 символів.",
+    "errorDescriptionMax": "Опис не може перевищувати 300 символів."
+}

@@ -1,5 +1,14 @@
 <div class="navbar">
-    <a class="navbar-title" href="/">Notes manager</a>
-    <a class="navbar-link" href="/notes">My Notes</a>
-    <a class="navbar-link" href="/notes/create">Create Note</a>
+    <a class="navbar-title" href="/">{{"appName" | translate}} </a>
+    <a class="navbar-link" href="/notes">{{"notesList" | translate}}</a>
+    <a class="navbar-link" href="/notes/create">{{"createNote" | translate}}</a>
+
+    <div class="dropdown">
+        <button class="dropbtn">{{"language" | translate}}</button>
+        <div class="dropdown-content">
+            <a (click)="setLanguage('uk')">Uk</a>
+            <a (click)="setLanguage('en')">En</a>
+            <a (click)="setLanguage('de')">De</a>
+        </div>
+    </div>
 </div>

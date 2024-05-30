@@ -1,0 +1,18 @@
+{
+    "appName" : "Notes manager",
+    "notesList" : "My notes",
+    "createNote" : "Create Note",
+    "editButton" : "Edit",
+    "deleteButton" : "Delete",
+    "cancelButton" : "Cancel",
+    "updateButton" : "Update",
+    "noteTitle": "Title",
+    "noteDescription": "Description",
+    "creationDate": "Creation date",
+    "lastChange": "Last change",
+    "placeholderTitle": "Enter title...",
+    "placeholderDescription": "Enter description...",
+    "errorDescriptionRequired": "Description is required.",
+    "errorDescriptionMin": "Description must be at least 5 characters long.",
+    "errorDescriptionMax": "Description cannot be more than 300 characters long."
+}

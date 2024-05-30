@@ -3,26 +3,26 @@
     <div class="note" *ngFor="let note of notes$ | async">
       <input type="hidden" [value]="note.noteId" readonly>
       <div class="input-group">
-        <label [for]="'title-' + note.noteId">Title</label>
+        <label [for]="'title-' + note.noteId">{{"noteTitle" | translate}}</label>
         <div [id]="'title-' + note.noteId">{{ note.title }}</div>
       </div>
       <div class="input-group">
-        <label [for]="'description-' + note.noteId">Description</label>
+        <label [for]="'description-' + note.noteId">{{"noteDescription" | translate}}</label>
         <div [id]="'description-' + note.noteId">{{ note.description }}</div>
       </div>
       <div class="dates">
         <div class="date">
-          <label>Creation date</label>
+          <label>{{"creationDate" | translate}}</label>
           <div>{{ note.creationDate }}</div>
         </div>
         <div class="date">
-          <label>Last change</label>
+          <label>{{"lastChange" | translate}}</label>
           <div>{{ note.changeDate ? note.changeDate : 'not modified' }}</div>
         </div>
       </div>
       <div class="buttons">
-        <button class="edit-button" (click)="updateNote(note.noteId)">Edit</button>
-        <button class="delete-button" (click)="deleteNote(note.noteId)">Delete</button>
+        <button class="edit-button" (click)="updateNote(note.noteId)">{{"editButton" | translate}}</button>
+        <button class="delete-button" (click)="deleteNote(note.noteId)">{{"deleteButton" | translate}}</button>
       </div>
     </div>
   </div>

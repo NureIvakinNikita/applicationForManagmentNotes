@@ -1,39 +1,39 @@
 <div class="notes-create-container">
   <div *ngIf="error" class="error-message">
-    {{ error }}
+    {{ getErrorMessage() }}
   </div>
   <form [formGroup]="noteForm" (ngSubmit)="createNote()" novalidate>
     <div class="note">
       <div class="input-group">
-        <label for="title">Title:</label>
+        <label for="title">{{"noteTitle" | translate}}:</label>
         <input 
           type="text" 
           id="title" 
-          placeholder="Enter title..." 
+          [placeholder]="'placeholderTitle' | translate"
           formControlName="title">
         <div *ngIf="title?.invalid && (title?.dirty || title?.touched)" class="error-messages">
-          <div *ngIf="title?.errors?.['required']">Title is required.</div>
-          <div *ngIf="title?.errors?.['minlength']">Title must be at least 1 character long.</div>
-          <div *ngIf="title?.errors?.['maxlength']">Title cannot be more than 100 characters long.</div>
+          <div class="error-messages" *ngIf="title?.errors?.['required']">{{"errorTitleRequired" | translate}}</div>
+          <div class="error-messages" *ngIf="title?.errors?.['minlength']">{{"errorTitleMin" | translate}}</div>
+          <div class="error-messages" *ngIf="title?.errors?.['maxlength']">{{"errorTitleMax" | translate}}</div>
         </div>
       </div>
 
       <div class="input-group">
-        <label for="description">Description:</label>
+        <label for="description">{{"noteDescription" | translate}}:</label>
         <textarea 
           id="description" 
-          placeholder="Enter description..." 
+          [placeholder]="'placeholderDescription' | translate"
           formControlName="description"></textarea>
         <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="error-messages">
-          <div *ngIf="description?.errors?.['required']">Description is required.</div>
-          <div *ngIf="description?.errors?.['minlength']">Description must be at least 5 characters long.</div>
-          <div *ngIf="description?.errors?.['maxlength']">Description cannot be more than 300 characters long.</div>
+          <div class="error-messages" *ngIf="description?.errors?.['required']">{{"errorDescriptionRequired" | translate}}</div>
+          <div class="error-messages" *ngIf="description?.errors?.['minlength']">{{"errorDescriptionMin" | translate}}</div>
+          <div class="error-messages" *ngIf="description?.errors?.['maxlength']">{{"errorDescriptionMax" | translate}}</div>
         </div>
       </div>
 
       <div class="buttons">
-        <button type="button" class="cancel-button" (click)="goToNotes()">Cancel</button>
-        <button type="submit" class="create-button" [disabled]="noteForm.invalid">{{ isCreateNote ? 'Create' : 'Edit' }}</button>
+        <button type="button" class="cancel-button" (click)="goToNotes()">{{"cancelButton" | translate}}</button>
+        <button type="submit" class="create-button" [disabled]="noteForm.invalid">{{ isCreateNote ? ("createButton" | translate) : ("updateButton" | translate) }}</button>
       </div>
     </div>
   </form>

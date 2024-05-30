@@ -1,0 +1,18 @@
+{
+    "appName": "Notizen-Manager",
+    "notesList": "Meine Notizen",
+    "createNote": "Notiz erstellen",
+    "editButton": "Bearbeiten",
+    "deleteButton": "Löschen",
+    "cancelButton": "Abbrechen",
+    "updateButton": "Aktualisieren",
+    "noteTitle": "Titel",
+    "noteDescription": "Beschreibung",
+    "creationDate": "Erstellungsdatum",
+    "lastChange": "Letzte Änderung",
+    "placeholderTitle": "Titel eingeben...",
+    "placeholderDescription": "Beschreibung eingeben...",
+    "errorDescriptionRequired": "Beschreibung ist erforderlich.",
+    "errorDescriptionMin": "Beschreibung muss mindestens 5 Zeichen lang sein.",
+    "errorDescriptionMax": "Beschreibung darf nicht länger als 300 Zeichen sein."
+}
