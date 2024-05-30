@@ -42,33 +42,32 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public boolean createNote(Note noteDTO) {
+    public Note createNote(Note noteDTO) {
         Note note = Note.builder()
                 .title(noteDTO.getTitle())
                 .description(noteDTO.getDescription())
                 .creationDate(LocalDate.now())
                 .build();
         try {
-            save(note);
+            return save(note);
         } catch (Exception e) {
             log.error("Error in saving note.");
-            throw new NoteCreationException("Error in saving note", e);
+            throw new NoteCreationException("Error in saving note, maybe note with such title exists");
         }
-        return true;
+
     }
 
     @Override
     public boolean updateNote(Integer id, Note noteDTO) {
         Note note = getNoteById(id);
         note.setTitle(noteDTO.getTitle());
-        note.setDescription(note.getDescription());
+        note.setDescription(noteDTO.getDescription());
         note.setChangeDate(LocalDate.now());
 
         try {
             save(note);
         } catch (Exception e) {
-            log.error("Error updating note with id " + id, e);
-            throw new NoteUpdateException("Error updating note with id " + id);
+            throw new NoteUpdateException("Error updating note, maybe note with such title exists");
         }
 
         return true;
@@ -89,7 +88,8 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Transactional
-    public void save(Note note) {
-        noteRepository.save(note);
+    public Note save(Note note) {
+        return noteRepository.save(note);
     }
 }
+

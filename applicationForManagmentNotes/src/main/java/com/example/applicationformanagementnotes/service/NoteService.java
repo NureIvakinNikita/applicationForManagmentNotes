@@ -11,7 +11,7 @@ public interface NoteService {
 
     Note getNoteById(Integer id);
 
-    boolean createNote(Note note);
+    Note createNote(Note note);
 
     boolean updateNote(Integer id, Note noteDTO);
 

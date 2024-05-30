@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:4200")
 public class NoteController {
 
     private final NoteService noteService;
@@ -31,9 +32,9 @@ public class NoteController {
     }
 
     @PostMapping("/notes")
-    public ResponseEntity<Boolean> createNote(@RequestBody @Valid Note note){
-        boolean result = noteService.createNote(note);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    public ResponseEntity<Note> createNote(@RequestBody @Valid Note note){
+        Note newNote = noteService.createNote(note);
+        return new ResponseEntity<>(newNote, HttpStatus.CREATED);
     }
 
     @PutMapping("/notes/{id}")
