@@ -28,6 +28,7 @@ public class Note {
     @Size(min = 5, max = 300, message = "Description must be less than 300 symbols.")
     private String description;
 
+    @NotNull
     private LocalDate creationDate;
 
     private LocalDate changeDate;
