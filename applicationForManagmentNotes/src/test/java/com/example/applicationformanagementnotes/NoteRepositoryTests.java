@@ -46,13 +46,11 @@ public class NoteRepositoryTests {
 
     @Test
     @Order(2)
-    public void findNoteByIdTest(){
-
-        //when
+    public void findNoteByIdTest() {
+        // when
         Note noteFromDb = noteRepository.findNoteByNoteId(testNote.getNoteId()).get();
-
-        //then
-        Assertions.assertThat(noteFromDb.getNoteId()).isEqualTo(1);
+        // then
+        Assertions.assertThat(noteFromDb.getNoteId()).isEqualTo(testNote.getNoteId());
     }
 
     @Test
