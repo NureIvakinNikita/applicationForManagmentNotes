@@ -33,7 +33,6 @@ export class NotesComponent implements OnInit {
 
     this.store.select(getNoteError).subscribe(item => {
       this.error = item;
-      console.log(this.error);
     });
 
   }
@@ -49,7 +48,6 @@ export class NotesComponent implements OnInit {
 
     this.store.select(getNoteError).subscribe(item => {
       this.error = item;
-      console.log(this.error + "selected");
     });
 
     this.activatedRoute.params.subscribe(params => {
@@ -88,13 +86,6 @@ export class NotesComponent implements OnInit {
     } else {
       this.store.dispatch(updateNote({ note: newNote }));
     }
-    
-    if (this.error !== "null") {
-      this.router.navigate(['/notes']).then(() => {
-        this.store.dispatch(getNotes()); 
-      });
-    }
-    
   }
 
   get title() {

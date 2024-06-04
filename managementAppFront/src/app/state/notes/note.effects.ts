@@ -1,15 +1,17 @@
 import { Injectable } from "@angular/core";
-import { mergeMap, map, catchError, of } from "rxjs";
+import { mergeMap, map, catchError, of, tap } from "rxjs";
 import { NotesService } from "../../notes.service";
 import * as NotesActions from './note.actions'
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Router } from "@angular/router";
 
 
 @Injectable()
 export class NotesEffects {
   constructor(
     private actions$: Actions,
-    private notesService: NotesService
+    private notesService: NotesService,
+    private router: Router
   ) {}
 
   loadNotes$ = createEffect(() =>
@@ -27,6 +29,9 @@ export class NotesEffects {
       ofType(NotesActions.createNote),
       mergeMap(action => this.notesService.createNote(action.note).pipe(
         map(() => NotesActions.createNoteSuccess({ note: action.note })),
+        tap(() => {
+          this.router.navigate(['/notes']);
+        }),
         mergeMap(() => [NotesActions.getNotes()]), 
         catchError(error => of(NotesActions.createNoteFail({ error: error.error.message })))
       ))
@@ -38,6 +43,9 @@ export class NotesEffects {
       ofType(NotesActions.updateNote),
       mergeMap(action => this.notesService.updateNote(action.note.noteId, action.note).pipe(
         map(() => NotesActions.updateNoteSuccess({ note: action.note })),
+        tap(() => {
+          this.router.navigate(['/notes']);
+        }),
         mergeMap(() => [NotesActions.getNotes()]), 
         catchError(error => of(NotesActions.updateNoteFail({ error: error.error.message })))
       ))
@@ -55,4 +63,3 @@ export class NotesEffects {
     )
   );
 }
-
