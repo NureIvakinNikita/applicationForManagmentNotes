@@ -15,7 +15,7 @@ If you still decide to run the program without docker, then you will need to con
 
 To run frontend app, you need to have on your pc something like  VS Code. 
 
-Also, I recommend to open app when it is running in chrome 
+Also, I recommend to open app when it is running in chrome and make port 4200 free
 
 You will need to install:
 
