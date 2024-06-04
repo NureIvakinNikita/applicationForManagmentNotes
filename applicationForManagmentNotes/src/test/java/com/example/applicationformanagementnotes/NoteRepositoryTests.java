@@ -37,7 +37,7 @@ public class NoteRepositoryTests {
     public void saveNoteTest() {
         //given
         Note note = Note.builder()
-                .title("Hello World¿For save")
+                .title("Hello World For save")
                 .description("This is test note")
                 .creationDate(LocalDate.now()).build();
         //when

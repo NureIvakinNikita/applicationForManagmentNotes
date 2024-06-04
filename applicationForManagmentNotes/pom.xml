@@ -67,7 +67,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
         <dependency>
@@ -94,5 +93,13 @@
             </plugin>
         </plugins>
     </build>
-
+    <profiles>
+        <profile>
+            <id>no-db</id>
+            <properties>
+                <skipTests>true</skipTests>
+                <spring.profiles.active>no-db</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 </project>
